@@ -1,15 +1,3 @@
-<script setup lang="ts">
-const client = useSupabaseClient();
-const user = useSupabaseUser();
-const router = useRouter();
-
-watchEffect(() => {
-  if (user.value) {
-    router.push('/dashboard');
-  }
-});
-</script>
-
 <template>
   <div class="flex min-h-screen flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
@@ -39,11 +27,7 @@ watchEffect(() => {
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form
-          class="space-y-6"
-          action="#"
-          method="POST"
-        >
+        <div class="space-y-6">
           <div>
             <label
               for="email"
@@ -52,6 +36,7 @@ watchEffect(() => {
             >
             <div class="mt-1">
               <input
+                v-model="email"
                 id="email"
                 name="email"
                 type="email"
@@ -70,6 +55,7 @@ watchEffect(() => {
             >
             <div class="mt-1">
               <input
+                v-model="password"
                 id="password"
                 name="password"
                 type="password"
@@ -106,13 +92,13 @@ watchEffect(() => {
 
           <div>
             <button
-              type="submit"
+              @click="signIn"
               class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Sign in
             </button>
           </div>
-        </form>
+        </div>
 
         <div class="mt-6">
           <div class="relative">
@@ -130,7 +116,7 @@ watchEffect(() => {
                 href="#"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
-                <span class="sr-only">Sign in with Facebook</span>
+                <span class="sr-only">Sign in with Gmail</span>
                 <svg
                   class="h-5 w-5"
                   aria-hidden="true"
@@ -151,7 +137,7 @@ watchEffect(() => {
                 href="#"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
-                <span class="sr-only">Sign in with Twitter</span>
+                <span class="sr-only">Sign in with Apple</span>
                 <svg
                   class="h-5 w-5"
                   aria-hidden="true"
@@ -167,10 +153,9 @@ watchEffect(() => {
 
             <div>
               <Button
-                @click="client.auth.signInWithOAuth({ provider: 'github' })"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
-                <span class="sr-only">Sign in with GitHub</span>
+                <span class="sr-only">Sign in with Spotify</span>
                 <svg
                   class="h-5 w-5"
                   aria-hidden="true"
@@ -191,3 +176,24 @@ watchEffect(() => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const client = useSupabaseClient();
+const user = useSupabaseUser();
+const email = ref('');
+const password = ref('');
+const router = useRouter();
+
+const signIn = async () => {
+  const { data, error } = await client.auth.signInWithPassword({
+    email: email.value,
+    password: password.value,
+  });
+};
+
+watchEffect(() => {
+  if (user.value) {
+    router.push('/dashboard');
+  }
+});
+</script>

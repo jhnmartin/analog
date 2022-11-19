@@ -1,15 +1,3 @@
-<script setup lang="ts">
-const client = useSupabaseClient();
-const user = useSupabaseUser();
-const router = useRouter();
-
-watchEffect(() => {
-  if (user.value) {
-    router.push('/dashboard');
-  }
-});
-</script>
-
 <template>
   <div class="flex min-h-screen">
     <div
@@ -87,7 +75,6 @@ watchEffect(() => {
 
                 <div>
                   <button
-                    @click="client.auth.signInWithOAuth({ provider: 'github' })"
                     class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                   >
                     <span class="sr-only">Sign in with GitHub</span>
@@ -124,7 +111,7 @@ watchEffect(() => {
           </div>
 
           <div class="mt-6">
-            <form
+            <div
               action="#"
               method="POST"
               class="space-y-6"
@@ -137,6 +124,7 @@ watchEffect(() => {
                 >
                 <div class="mt-1">
                   <input
+                    v-model="email"
                     id="email"
                     name="email"
                     type="email"
@@ -155,6 +143,7 @@ watchEffect(() => {
                 >
                 <div class="mt-1">
                   <input
+                    v-model="password"
                     id="password"
                     name="password"
                     type="password"
@@ -191,13 +180,13 @@ watchEffect(() => {
 
               <div>
                 <button
-                  type="submit"
+                  @click="signUp"
                   class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Sign in
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -211,3 +200,27 @@ watchEffect(() => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const client = useSupabaseClient();
+const user = useSupabaseUser();
+const email = ref('');
+const password = ref('');
+const router = useRouter();
+
+const signUp = async () => {
+  const { data, error } = await client.auth.signUp({
+    email: email.value,
+    password: password.value,
+  });
+  console.log(data.user, error, data.session);
+};
+
+watchEffect(() => {
+  if (user.value) {
+    router.push('/dashboard');
+  }
+});
+</script>
