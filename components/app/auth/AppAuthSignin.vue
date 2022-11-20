@@ -2,11 +2,7 @@
   <div class="flex min-h-screen flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <NuxtLink to="/">
-        <img
-          class="mx-auto h-12 w-auto"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          alt="Your Company"
-        />
+        <ImagesFullNameLogo />
       </NuxtLink>
 
       <h2

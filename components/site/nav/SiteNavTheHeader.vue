@@ -6,22 +6,18 @@
     />
     <div class="relative z-20">
       <div
-        class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 sm:py-4 md:justify-start md:space-x-10 lg:px-8"
+        class="mx-auto flex items-center justify-between px-4 py-5 sm:px-6 sm:py-4 lg:justify-start lg:space-x-10 lg:px-8"
       >
         <div>
           <NuxtLink
             to="/"
             class="flex"
           >
-            <span class="sr-only">Your Company</span>
-            <img
-              class="h-8 w-auto sm:h-10"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
+            <span class="sr-only">Analog Logo</span>
+            <ImagesFullNameLogo />
           </NuxtLink>
         </div>
-        <div class="-my-2 -mr-2 md:hidden">
+        <div class="-my-2 -mr-2 lg:hidden">
           <PopoverButton
             class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           >
@@ -33,7 +29,7 @@
           </PopoverButton>
         </div>
         <div
-          class="hidden md:flex md:flex-1 md:items-center md:justify-between"
+          class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-between"
         >
           <PopoverGroup
             as="nav"
@@ -350,7 +346,7 @@
     >
       <PopoverPanel
         focus
-        class="absolute inset-x-0 top-0 z-30 origin-top-right transform p-2 transition md:hidden"
+        class="absolute inset-x-0 top-0 z-30 origin-top-right transform p-2 transition lg:hidden"
       >
         <div
           class="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
@@ -358,11 +354,7 @@
           <div class="px-5 pt-5 pb-6 sm:pb-8">
             <div class="flex items-center justify-between">
               <div>
-                <img
-                  class="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt="Your Company"
-                />
+                <ImagesFullNameLogo />
               </div>
               <div class="-mr-2">
                 <PopoverButton
@@ -383,29 +375,35 @@
                     v-for="item in solutions"
                     :key="item.name"
                     :to="item.to"
-                    class="-m-3 flex items-center rounded-lg p-3 hover:bg-gray-50"
                   >
-                    <div
-                      class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12"
+                    <PopoverButton
+                      as="MyLink"
+                      class="-m-3 flex items-center rounded-lg p-3 hover:bg-gray-50"
                     >
-                      <component
-                        :is="item.icon"
-                        class="h-6 w-6"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div class="ml-4 text-base font-medium text-gray-900">
-                      {{ item.name }}
-                    </div>
+                      <div
+                        class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12"
+                      >
+                        <component
+                          :is="item.icon"
+                          class="h-6 w-6"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <div class="ml-4 text-base font-medium text-gray-900">
+                        {{ item.name }}
+                      </div>
+                    </PopoverButton>
                   </NuxtLink>
                 </div>
                 <div class="mt-8 text-base">
-                  <NuxtLink
-                    to="/products"
-                    class="font-medium text-indigo-600 hover:text-indigo-500"
-                  >
-                    View all products
-                    <span aria-hidden="true"> &rarr;</span>
+                  <NuxtLink to="/products">
+                    <PopoverButton
+                      as="MyLink"
+                      class="font-medium text-indigo-600 hover:text-indigo-500"
+                    >
+                      View all products
+                      <span aria-hidden="true"> &rarr;</span>
+                    </PopoverButton>
                   </NuxtLink>
                 </div>
               </nav>
@@ -413,36 +411,53 @@
           </div>
           <div class="py-6 px-5">
             <div class="grid grid-cols-2 gap-4">
-              <NuxtLink
-                to="#"
-                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
-                >Pricing</NuxtLink
-              >
-              <NuxtLink
-                to="#"
-                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
-                >Docs</NuxtLink
-              >
-              <NuxtLink
-                to="#"
-                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
-                >Company</NuxtLink
-              >
-              <NuxtLink
-                to="#"
-                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
-                >Resources</NuxtLink
-              >
-              <NuxtLink
-                to="#"
-                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
-                >Blog</NuxtLink
-              >
-              <NuxtLink
-                to="#"
-                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
-                >Contact Sales</NuxtLink
-              >
+              <NuxtLink to="/pricing">
+                <PopoverButton
+                  as="MyLink"
+                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  >Pricing
+                </PopoverButton>
+              </NuxtLink>
+              <NuxtLink to="/docs">
+                <PopoverButton
+                  as="MyLink"
+                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  >Docs
+                </PopoverButton>
+              </NuxtLink>
+
+              <NuxtLink to="/about">
+                <PopoverButton
+                  as="MyLink"
+                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  >Company
+                </PopoverButton>
+              </NuxtLink>
+
+              <NuxtLink to="/guides">
+                <PopoverButton
+                  as="MyLink"
+                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  >Resources
+                </PopoverButton>
+              </NuxtLink>
+
+              <NuxtLink to="/blog">
+                <PopoverButton
+                  as="MyLink"
+                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  >Blog
+                </PopoverButton>
+              </NuxtLink>
+
+              <NuxtLink to="/sales">
+                <PopoverButton
+                  as="MyLink"
+                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                >
+                  Contact Sales
+                </PopoverButton>
+              </NuxtLink>
             </div>
             <div class="mt-6">
               <div v-if="!user">
