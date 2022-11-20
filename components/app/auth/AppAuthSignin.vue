@@ -165,11 +165,6 @@ const signIn = async () => {
     email: email.value,
     password: password.value,
   });
+  router.push('/dashboard');
 };
-
-watchEffect(() => {
-  if (user.value) {
-    router.push('/dashboard');
-  }
-});
 </script>

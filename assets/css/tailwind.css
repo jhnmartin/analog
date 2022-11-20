@@ -1,0 +1,19 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navlink {
+  @apply text-6xl font-display text-yellow-300;
+}
+
+,
+.nav-button-main {
+  @apply bg-zinc-900;
+}
+
+,
+.nav-button-secondary {
+  @apply bg-transparent outline-zinc-900;
+}
