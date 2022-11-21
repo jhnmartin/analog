@@ -20,3 +20,6 @@ body {
 .mobile-nav-link {
   @apply text-base font-medium text-zinc-900 hover:text-teal-800;
 }
+.auth-form-button {
+  @apply inline-flex w-full justify-center rounded-full bg-zinc-900 py-4 px-4 font-medium text-zinc-50 shadow-sm hover:bg-teal-800;
+}

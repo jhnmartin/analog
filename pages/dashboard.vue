@@ -28,9 +28,14 @@ const user = useSupabaseUser();
 const router = useRouter();
 
 const signOut = async () => {
-  const { error } = await client.auth.signOut();
-  if (!user.value) router.push('/');
+  await client.auth.signOut();
 };
+
+watchEffect(() => {
+  if (!user.value) {
+    router.push('/');
+  }
+});
 
 definePageMeta({
   layout: false,
