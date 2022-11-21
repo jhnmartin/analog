@@ -45,7 +45,7 @@
         >
           <img
             class="absolute inset-0 h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
+            src="~/assets/images/illustrations/Collaboration.jpg"
             alt=""
           />
         </div>
@@ -54,14 +54,4 @@
   </div>
 </template>
 
-<script setup>
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
-
-const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
-];
-</script>
+<script setup></script>

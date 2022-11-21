@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Task } from '~~/types/tasks';
+
 import { ref } from 'vue';
 import {
   Dialog,
@@ -26,6 +28,18 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid/index.js';
 const client = useSupabaseClient();
 const user = useSupabaseUser();
 const router = useRouter();
+const newTask = ref('');
+
+// TODO fetch taskd from supabase
+
+const { data: tasks } = await useAsyncData('tasks', async () => {
+  const { data } = await client
+    .from('tasks')
+    .select('id, title, completed')
+    .eq('user', user.value.id)
+    .order('created_at');
+  return data;
+});
 
 const signOut = async () => {
   await client.auth.signOut();
@@ -324,6 +338,14 @@ const sidebarOpen = ref(false);
               </div>
               <div class="mx-auto px-4 sm:px-6 md:px-8">
                 <!-- Replace with your content -->
+                <ul>
+                  <li
+                    v-for="task of tasks"
+                    :key="task.id"
+                  >
+                    <p>name {{ task.title }}</p>
+                  </li>
+                </ul>
                 <div class="py-4">
                   <div
                     class="h-96 rounded-lg border-4 border-dashed border-gray-200"
