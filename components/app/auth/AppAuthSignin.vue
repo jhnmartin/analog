@@ -165,6 +165,13 @@ const signIn = async () => {
     email: email.value,
     password: password.value,
   });
-  router.push('/dashboard');
+  console.log(data.user);
+  console.log(error);
 };
+
+watchEffect(() => {
+  if (user.value) {
+    router.push('/dashboard');
+  }
+});
 </script>

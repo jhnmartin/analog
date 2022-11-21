@@ -4,7 +4,7 @@
       class="pointer-events-none absolute inset-0 z-30 shadow"
       aria-hidden="true"
     />
-    <div class="relative z-20">
+    <div class="relative z-20 border-b border-zinc-900">
       <div
         class="mx-auto flex items-center justify-between px-4 py-5 sm:px-6 sm:py-4 lg:justify-start lg:space-x-10 lg:px-8"
       >
@@ -19,7 +19,7 @@
         </div>
         <div class="-my-2 -mr-2 lg:hidden">
           <PopoverButton
-            class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            class="inline-flex items-center justify-center bg-white p-2 text-zinc-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900"
           >
             <span class="sr-only">Open menu</span>
             <Bars3Icon
@@ -302,35 +302,17 @@
               </transition>
             </Popover>
           </PopoverGroup>
-          <div v-if="!user">
-            <div class="hidden md:flex items-center md:ml-12">
-              <NuxtLink
-                to="/signin"
-                class="text-base font-medium text-gray-500 hover:text-gray-900"
-                >Sign in</NuxtLink
-              >
-              <NuxtLink
-                to="/signup"
-                class="ml-8 inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                >Sign up</NuxtLink
-              >
-            </div>
-            <div class="md:hidden mt-6">
-              <NuxtLink
-                to="/signup"
-                class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                >Sign up</NuxtLink
-              >
-              <p class="mt-6 text-center text-base font-medium text-gray-500">
-                Existing customer?
-                {{ ' ' }}
-                <NuxtLink
-                  to="signin"
-                  class="text-indigo-600 hover:text-indigo-500"
-                  >Sign in</NuxtLink
-                >
-              </p>
-            </div>
+          <div class="flex items-center md:ml-12">
+            <NuxtLink
+              to="/signin"
+              class="nav-button-secondary"
+              >Sign in</NuxtLink
+            >
+            <NuxtLink
+              to="/signup"
+              class="nav-button-main"
+              >Sign up</NuxtLink
+            >
           </div>
         </div>
       </div>
@@ -349,16 +331,18 @@
         class="absolute inset-x-0 top-0 z-30 origin-top-right transform p-2 transition lg:hidden"
       >
         <div
-          class="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+          class="divide-y-2 divide-gray-50 bg-zinc-50 shadow-lg ring-1 ring-zinc-900 ring-opacity-5"
         >
           <div class="px-5 pt-5 pb-6 sm:pb-8">
             <div class="flex items-center justify-between">
-              <div>
-                <ImagesFullNameLogo />
-              </div>
+              <NuxtLink to="/">
+                <PopoverButton as="MyLink">
+                  <ImagesFullNameLogo />
+                </PopoverButton>
+              </NuxtLink>
               <div class="-mr-2">
                 <PopoverButton
-                  class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                  class="inline-flex items-center justify-center bg-white p-2 text-zinc-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900"
                 >
                   <span class="sr-only">Close menu</span>
                   <XMarkIcon
@@ -378,10 +362,10 @@
                   >
                     <PopoverButton
                       as="MyLink"
-                      class="-m-3 flex items-center rounded-lg p-3 hover:bg-gray-50"
+                      class="-m-3 flex items-center p-3 hover:bg-zinc-50"
                     >
                       <div
-                        class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12"
+                        class="flex h-10 w-10 flex-shrink-0 items-center justify-center bg-zinc-900 text-zinc-50 sm:h-12 sm:w-12"
                       >
                         <component
                           :is="item.icon"
@@ -389,7 +373,7 @@
                           aria-hidden="true"
                         />
                       </div>
-                      <div class="ml-4 text-base font-medium text-gray-900">
+                      <div class="ml-4 text-base font-medium text-zinc-900">
                         {{ item.name }}
                       </div>
                     </PopoverButton>
@@ -399,7 +383,7 @@
                   <NuxtLink to="/products">
                     <PopoverButton
                       as="MyLink"
-                      class="font-medium text-indigo-600 hover:text-indigo-500"
+                      class="font-medium text-zinc-900 hover:text-teal-800"
                     >
                       View all products
                       <span aria-hidden="true"> &rarr;</span>
@@ -414,14 +398,14 @@
               <NuxtLink to="/pricing">
                 <PopoverButton
                   as="MyLink"
-                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  class="mobile-nav-link"
                   >Pricing
                 </PopoverButton>
               </NuxtLink>
               <NuxtLink to="/docs">
                 <PopoverButton
                   as="MyLink"
-                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  class="mobile-nav-link"
                   >Docs
                 </PopoverButton>
               </NuxtLink>
@@ -429,7 +413,7 @@
               <NuxtLink to="/about">
                 <PopoverButton
                   as="MyLink"
-                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  class="mobile-nav-link"
                   >Company
                 </PopoverButton>
               </NuxtLink>
@@ -437,7 +421,7 @@
               <NuxtLink to="/guides">
                 <PopoverButton
                   as="MyLink"
-                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  class="mobile-nav-link"
                   >Resources
                 </PopoverButton>
               </NuxtLink>
@@ -445,7 +429,7 @@
               <NuxtLink to="/blog">
                 <PopoverButton
                   as="MyLink"
-                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  class="mobile-nav-link"
                   >Blog
                 </PopoverButton>
               </NuxtLink>
@@ -453,45 +437,27 @@
               <NuxtLink to="/sales">
                 <PopoverButton
                   as="MyLink"
-                  class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
+                  class="mobile-nav-link"
                 >
                   Contact Sales
                 </PopoverButton>
               </NuxtLink>
             </div>
             <div class="mt-6">
-              <div v-if="!user">
-                <div class="hidden md:flex items-center md:ml-12">
-                  <NuxtLink
-                    to="/signin"
-                    class="text-base font-medium text-gray-500 hover:text-gray-900"
-                    >Sign in</NuxtLink
-                  >
-                  <NuxtLink
-                    to="/signup"
-                    class="ml-8 inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                    >Sign up</NuxtLink
-                  >
-                </div>
-                <div class="md:hidden mt-6">
-                  <NuxtLink
-                    to="/signup"
-                    class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                    >Sign up</NuxtLink
-                  >
-                  <p
-                    class="mt-6 text-center text-base font-medium text-gray-500"
-                  >
-                    Existing customer?
-                    {{ ' ' }}
-                    <NuxtLink
-                      to="signin"
-                      class="text-indigo-600 hover:text-indigo-500"
-                      >Sign in</NuxtLink
-                    >
-                  </p>
-                </div>
-              </div>
+              <NuxtLink
+                to="/signup"
+                class="flex w-full items-center justify-center rounded-full border border-transparent bg-zinc-900 p-4 text-base font-medium text-zinc-50 shadow-sm hover:bg-teal-800"
+                >Sign up</NuxtLink
+              >
+              <p class="mt-6 text-center text-base font-medium text-zinc-500">
+                Existing customer?
+                {{ ' ' }}
+                <a
+                  to="/signin"
+                  class="text-teal-800 hover:text-teal-500"
+                  >Sign in</a
+                >
+              </p>
             </div>
           </div>
         </div>
@@ -525,7 +491,10 @@ import {
   Squares2X2Icon,
   UserGroupIcon,
   XMarkIcon,
-} from '@heroicons/vue/24/outline/index.js';
+  MusicalNoteIcon,
+  MegaphoneIcon,
+  BuildingStorefrontIcon,
+} from '@heroicons/vue/24/solid/index.js';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid/index.js';
 
 const solutions = [
@@ -534,25 +503,25 @@ const solutions = [
     description:
       'Get a better understanding of where your traffic is coming from.',
     to: '/artists',
-    icon: ChartBarIcon,
+    icon: MusicalNoteIcon,
   },
   {
     name: 'Management',
     description: 'Speak directly to your customers in a more meaningful way.',
     to: '/management',
-    icon: CursorArrowRaysIcon,
+    icon: UserGroupIcon,
   },
   {
     name: 'Promoters',
     description: "Your customers' data will be safe and secure.",
     to: '/promoters',
-    icon: ShieldCheckIcon,
+    icon: MegaphoneIcon,
   },
   {
     name: 'Venues',
     description: "Connect with third-party tools that you're already using.",
     to: '/venues',
-    icon: Squares2X2Icon,
+    icon: BuildingStorefrontIcon,
   },
 ];
 const callsToAction = [
