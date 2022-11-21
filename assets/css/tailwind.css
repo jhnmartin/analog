@@ -4,12 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply text-zinc-900 bg-zinc-50;
+}
+
 .navlink {
   @apply text-6xl font-display text-yellow-300;
 }
 .nav-button-main {
-  @apply bg-zinc-900;
+  @apply ml-4 inline-flex items-center justify-center rounded-full border-2 border-zinc-900 bg-zinc-900 px-4 py-2 text-base font-medium text-zinc-50 shadow-sm hover:bg-teal-800;
 }
 .nav-button-secondary {
-  @apply bg-transparent outline-zinc-900;
+  @apply ml-4 inline-flex items-center justify-center rounded-full border-2 border-zinc-900 bg-transparent px-4 py-2 text-base font-medium text-zinc-900 shadow-sm hover:bg-zinc-900 hover:text-zinc-50;
+}
+.mobile-nav-link {
+  @apply text-base font-medium text-zinc-900 hover:text-teal-800;
 }
